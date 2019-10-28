@@ -1,0 +1,625 @@
+{
+	"info": {
+		"_postman_id": "f162de23-15ad-48d3-8dcb-e7f3beafd97e",
+		"name": "代理接口",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "属性控制消息",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"deviceId\": \"1CD141979B181061\",\n\t\"objectId\": 3200,\n\t\"instanceId\": 0,\n\t\"resourceId\": \"\",\n\t\"dataAnalysis\": 1,\n\t\"value\": 0\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/cloudapi/D747F4D7271A5777/proxy?op=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cloudapi",
+						"D747F4D7271A5777",
+						"proxy"
+					],
+					"query": [
+						{
+							"key": "op",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "功能控制消息",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"deviceId\": \"1CD141979B181061\",\n\t\"funcIdentity\": \"\",\n\t\"funcValue\": 0\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/cloudapi/D747F4D7271A5777/proxy?op=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cloudapi",
+						"D747F4D7271A5777",
+						"proxy"
+					],
+					"query": [
+						{
+							"key": "op",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "批量功能控制",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"data\": [\n\t\t{\n    \t\t\"deviceId\":\"F3E0A5131CB00A8E\",\n    \t\t\"funcIdentity\":\"LOOP_SWITCH_B\",\n    \t\t\"funcValue\": 0\n\t\t},\n\t\t{\n    \t\t\"deviceId\":\"F3E0A5131CB00A8E\",\n    \t\t\"funcIdentity\":\"LOOP_SWITCH_A\",\n    \t\t\"funcValue\": 0\n\t\t},\n\t\t{\n    \t\t\"deviceId\":\"F3E0A5131CB00A8E\",\n    \t\t\"funcIdentity\":\"LOOP_SWITCH_C\",\n    \t\t\"funcValue\": 0\n\t\t}\t\n\t]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/cloudapi/D747F4D7271A5777/proxy?op=18",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cloudapi",
+						"D747F4D7271A5777",
+						"proxy"
+					],
+					"query": [
+						{
+							"key": "op",
+							"value": "18"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "设备属性查询",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"deviceId\": \"1CD141979B181061\",\n\t\"data\": []\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/cloudapi/D747F4D7271A5777/proxy?op=4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cloudapi",
+						"D747F4D7271A5777",
+						"proxy"
+					],
+					"query": [
+						{
+							"key": "op",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "设备属性查询(复杂)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"deviceId\": \"1CD141979B181061\",\n\t\"data\": [{\"id\":3200,\"v\":[{\"r\":26500}]}]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/cloudapi/D747F4D7271A5777/proxy?op=4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cloudapi",
+						"D747F4D7271A5777",
+						"proxy"
+					],
+					"query": [
+						{
+							"key": "op",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "设备在线状态",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"devices\": [\n\t\t\"1CD141979B181061\"\n\t]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/cloudapi/D747F4D7271A5777/proxy?op=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cloudapi",
+						"D747F4D7271A5777",
+						"proxy"
+					],
+					"query": [
+						{
+							"key": "op",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "设备MQTT配置",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"deviceId\": \"1CD141979B181061\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/cloudapi/D747F4D7271A5777/proxy?op=6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cloudapi",
+						"D747F4D7271A5777",
+						"proxy"
+					],
+					"query": [
+						{
+							"key": "op",
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "产品MQTT配置",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"prodIds\": [\n\t\t\"E600\",\n\t\t\"E300\"\n\t]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/cloudapi/D747F4D7271A5777/proxy?op=7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cloudapi",
+						"D747F4D7271A5777",
+						"proxy"
+					],
+					"query": [
+						{
+							"key": "op",
+							"value": "7"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "设备在线升级",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"deviceId\": \"1CD141979B181061\",\n\t\"command\": \"EXEC_BOOT\",\n\t\"version\": \"1.0.0.0\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/cloudapi/D747F4D7271A5777/proxy?op=8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cloudapi",
+						"D747F4D7271A5777",
+						"proxy"
+					],
+					"query": [
+						{
+							"key": "op",
+							"value": "8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "设备资源控制",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"deviceId\": \"42C16995D0EB49DE\",\n\t\"data\": [\n\t\t{\"id\":3200,\"v\":[{\"r\":26500,\"v\":0}]}\n\t]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/cloudapi/D747F4D7271A5777/proxy?op=9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cloudapi",
+						"D747F4D7271A5777",
+						"proxy"
+					],
+					"query": [
+						{
+							"key": "op",
+							"value": "9"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "设备属性重传",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"deviceId\": \"1CD141979B181061\",\n\t\"data\": [\n\t\t{\"id\":3200,\"v\":[{\"r\":26500,\"v\":0}]}\n\t]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/cloudapi/D747F4D7271A5777/proxy?op=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cloudapi",
+						"D747F4D7271A5777",
+						"proxy"
+					],
+					"query": [
+						{
+							"key": "op",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "设备节点查询",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"deviceId\": \"1CD141979B181061\",\n\t\"nid\": \"\",\n\t\"data\": [\n\t\t{\"id\":3200,\"v\":[{\"r\":26500,\"v\":0}]}\n\t]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/cloudapi/D747F4D7271A5777/proxy?op=11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cloudapi",
+						"D747F4D7271A5777",
+						"proxy"
+					],
+					"query": [
+						{
+							"key": "op",
+							"value": "11"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "设备版本检查",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"deviceId\": \"1CD141979B181061\",\n\t\"check\": 0\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/cloudapi/D747F4D7271A5777/proxy?op=12",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cloudapi",
+						"D747F4D7271A5777",
+						"proxy"
+					],
+					"query": [
+						{
+							"key": "op",
+							"value": "12"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "设备强制升级",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"deviceId\": \"1CD141979B181061\",\n\t\"file\": \"\",\n\t\"version\": \"\",\n\t\"checksum\": \"\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/cloudapi/D747F4D7271A5777/proxy?op=13",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cloudapi",
+						"D747F4D7271A5777",
+						"proxy"
+					],
+					"query": [
+						{
+							"key": "op",
+							"value": "13"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "设备重启消息",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"deviceId\": \"1CD141979B181061\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/cloudapi/D747F4D7271A5777/proxy?op=14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cloudapi",
+						"D747F4D7271A5777",
+						"proxy"
+					],
+					"query": [
+						{
+							"key": "op",
+							"value": "14"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "设备恢复重置",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"deviceId\": \"1CD141979B181061\",\n\t\"reset\": 0\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/cloudapi/D747F4D7271A5777/proxy?op=15",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cloudapi",
+						"D747F4D7271A5777",
+						"proxy"
+					],
+					"query": [
+						{
+							"key": "op",
+							"value": "15"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "设备日志上报",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "TOKEN",
+						"value": "19eaeace1c059713c4e4d37f"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"deviceId\": \"1CD141979B181061\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/cloudapi/D747F4D7271A5777/proxy?op=16",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cloudapi",
+						"D747F4D7271A5777",
+						"proxy"
+					],
+					"query": [
+						{
+							"key": "op",
+							"value": "16"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

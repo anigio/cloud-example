@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+          http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="configStorage" class="com.anigio.cloudapi.openapi.api.ApiInMemoryConfigStorage">
+        <property name="appId" value="${cloudapi.appid}" />
+        <property name="appKey" value="${cloudapi.appkey}" />
+        <property name="secret" value="${cloudapi.secret}" />
+        <property name="apiUrl" value="${cloudapi.url}" />
+        <property name="notifyToken" value="${cloudapi.notify.token}" />
+        <property name="notifySecret" value="${cloudapi.notify.secret}" />
+    </bean>
+    <bean id="apiV1Service" class="com.anigio.cloudapi.openapi.ApiServiceImpl">
+        <property name="configStorage" ref="configStorage" />
+    </bean>
+
+</beans>
