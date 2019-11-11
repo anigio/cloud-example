@@ -1,0 +1,16 @@
+[
+    // 空间功能变化通知
+    {
+        "messageId": [9843787654315888776], // 消息控制id，64位整型
+        "messageType": "SPACE_FUNC_NOTIFY", // 消息类型
+        "executeTime": 9843787654315888776, // 动作执行时间，64位整型
+        "deviceId": "XXX", // 设备ID
+        "content": [
+            {
+                "spaceIdentity": "1902XXXXXX", // 空间惟一标识符
+                "funcIdentity": "XXXX", // 设备功能标识符
+                "funcValue": 0 // 功能当前状态
+            }
+        ] // 消息内容
+    }
+]
