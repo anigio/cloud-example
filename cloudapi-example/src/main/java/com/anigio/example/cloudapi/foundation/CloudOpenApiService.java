@@ -47,6 +47,20 @@ public interface CloudOpenApiService {
     Object[] devicePropertyControlMessage(Map<String, Object> paramMap);
 
     /**
+     * 查询设备功能状态
+     * @param paramMap 数据内容
+     * @return Object[]
+     */
+    Object[] findDeviceFuncStateInfo(Map<String, Object> paramMap);
+
+    /**
+     * 更新设备回调通知消息
+     * @param paramMap 数据内容
+     * @return Object[]
+     */
+    Object[] updateDeviceNotifyMessage(Map<String, Object> paramMap);
+
+    /**
      * 查询设备MQTT配置信息
      * @param paramMap 数据内容
      * @return Object[]

@@ -15,6 +15,7 @@ import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
@@ -273,6 +274,45 @@ public class CloudApiInfoRequest implements Serializable {
     public Map<String, Object> deviceLogUploadMessageMap() {
         OpenApi.ControlMessage message = OpenApi.ControlMessage.builder().to(getDeviceId()).build();
         return FluentMap.builder().add(MK.DEVICE_ID, getDeviceId()).add(MK.DATA, message.jsonString()).map();
+    }
+
+    // 设备功能状态查询
+    private List<OpenApi.DeviceFuncStateInfo.FunctionInfo> functions;
+
+    /**
+     * 设备功能状态参数
+     * @return boolean
+     */
+    public boolean invalidDeviceFuncParam() {
+        if (CollectionUtils.isEmpty(getFunctions()) || getFunctions().size() > 20) {
+            return true;
+        }
+        for (OpenApi.DeviceFuncStateInfo.FunctionInfo item : getFunctions()) {
+            if (StringUtils.isAnyEmpty(item.getDeviceId(), item.getFuncIdentity())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Map<String, Object> deviceFuncMap() {
+        OpenApi.DeviceFuncStateInfo stateInfo = OpenApi.DeviceFuncStateInfo.builder()
+                .functions(getFunctions()).build();
+        return FluentMap.builder().add(MK.DATA, stateInfo.jsonString()).map();
+    }
+
+    // 设备回调通知消息
+
+    public boolean invalidNotifyParam() {
+        return StringUtils.isEmpty(getDeviceId()) || getData() == null
+                || Pattern.compile(MK.EXP_JSON_O).matcher(getData().toString()).find();
+    }
+
+    public Map<String, Object> notifyMessageMap() {
+
+        OpenApi.DeviceNotifyMessage notifyMessage = OpenApi.DeviceNotifyMessage.builder()
+                .deviceId(getDeviceId()).data(getData()).build();
+        return FluentMap.builder().add(MK.DATA, notifyMessage.jsonString()).map();
     }
 
     // Setting Method

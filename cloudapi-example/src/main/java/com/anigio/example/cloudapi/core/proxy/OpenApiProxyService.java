@@ -16,6 +16,22 @@ public interface OpenApiProxyService {
     Object[] sendDeviceControlMessage(String userid, Map<String, Object> paramMap);
 
     /**
+     * 查询功能状态信息
+     * @param userid 用户标识
+     * @param paramMap 数据内容
+     * @return Object[]
+     */
+    Object[] findDeviceFuncStateInfo(String userid, Map<String, Object> paramMap);
+
+    /**
+     * 更新设备回调通知消息
+     * @param userid 用户标识
+     * @param paramMap 数据内容
+     * @return Object[]
+     */
+    Object[] updateDeviceNotifyMessage(String userid, Map<String, Object> paramMap);
+
+    /**
      * 查询设备属性信息(GET)
      * @param userid 用户标识
      * @param paramMap 数据内容

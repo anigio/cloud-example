@@ -196,6 +196,24 @@ public class CloudApiPortalServiceImpl {
                     return DefaultResponse.response();
                 }
                 break;
+            case FUNCTION_19: // TODO: 设备功能状态查询
+                if (info.invalidDeviceFuncParam()) {
+                    return ParamResponse.from(ECode.E_INVALID_PARAM);
+                }
+                resp = openApiProxyService.findDeviceFuncStateInfo(userid, info.deviceFuncMap());
+                if (EResponse.toBool(resp[0])) {
+                    return JSONArrayResponse.from(resp[1]);
+                }
+                break;
+            case FUNCTION_20: // TODO: 更新设备回调通知消息
+                if (info.invalidNotifyParam()) {
+                    return ParamResponse.from(ECode.E_INVALID_PARAM);
+                }
+                resp = openApiProxyService.updateDeviceNotifyMessage(userid, info.notifyMessageMap());
+                if (EResponse.toBool(resp[0])) {
+                    return DefaultResponse.response();
+                }
+                break;
             default:
                 return ParamResponse.from(ECode.E_ILLEGAL_REQUEST);
         }

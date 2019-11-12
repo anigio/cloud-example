@@ -161,6 +161,48 @@ public class CloudOpenApiServiceImpl implements CloudOpenApiService {
     }
 
     /**
+     * 查询设备功能状态
+     *
+     * @param paramMap 数据内容
+     * @return Object[]
+     */
+    @Override
+    public Object[] findDeviceFuncStateInfo(Map<String, Object> paramMap) {
+        try {
+            Map<String, Object> body = getBodyMessageMap(paramMap);
+
+            String appid = apiService.getConfigStorage().getAppId();
+            ApiResult ret = ApiResult.fromJson(apiService.findDeviceFuncStateInfo(appid, body));
+
+            return EResponse.response(EResponse.SUCCESS, JSONObject.toJSONString(data(ret)));
+        } catch (ApiException e) {
+            log.error("findDeviceFuncStateInfo resp={}", e.getResult());
+        }
+        return EResponse.response(EResponse.FAILURE);
+    }
+
+    /**
+     * 更新设备回调通知消息
+     *
+     * @param paramMap 数据内容
+     * @return Object[]
+     */
+    @Override
+    public Object[] updateDeviceNotifyMessage(Map<String, Object> paramMap) {
+        try {
+            Map<String, Object> body = getBodyMessageMap(paramMap);
+
+            String appid = apiService.getConfigStorage().getAppId();
+            ApiResult ret = ApiResult.fromJson(apiService.updateDeviceNotifyMessage(appid, body));
+
+            return EResponse.response(EResponse.SUCCESS, JSONObject.toJSONString(ret.getData()));
+        } catch (ApiException e) {
+            log.error("findDeviceFuncStateInfo resp={}", e.getResult());
+        }
+        return EResponse.response(EResponse.FAILURE);
+    }
+
+    /**
      * 数据JSON格式化
      * @param ret 数据内容
      * @return Object

@@ -26,6 +26,7 @@ public enum EQueryOp {
     FUNCTION_17(17),
     FUNCTION_18(18),
     FUNCTION_19(19),
+    FUNCTION_20(20),
     UNKNOWN(-1);
 
     private int value;

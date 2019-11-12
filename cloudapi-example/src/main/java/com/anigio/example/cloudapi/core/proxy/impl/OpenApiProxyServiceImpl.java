@@ -45,6 +45,42 @@ public class OpenApiProxyServiceImpl implements OpenApiProxyService {
     }
 
     /**
+     * 查询功能状态信息
+     *
+     * @param userid   用户标识
+     * @param paramMap 数据内容
+     * @return Object[]
+     */
+    @Override
+    public Object[] findDeviceFuncStateInfo(String userid, Map<String, Object> paramMap) {
+
+        Object[] resp = cloudOpenApiService.findDeviceFuncStateInfo(paramMap);
+        if (EResponse.toFail(resp[0])) {
+            log.warn("findDeviceFuncStateInfo userid={}, map={}", userid, paramMap);
+            return EResponse.response(EResponse.FAILURE, ESysCode.RESPONSE);
+        }
+        return EResponse.response(EResponse.SUCCESS, resp[1]);
+    }
+
+    /**
+     * 更新设备回调通知消息
+     *
+     * @param userid   用户标识
+     * @param paramMap 数据内容
+     * @return Object[]
+     */
+    @Override
+    public Object[] updateDeviceNotifyMessage(String userid, Map<String, Object> paramMap) {
+        // 发送设备属性控制消息
+        Object[] resp = cloudOpenApiService.updateDeviceNotifyMessage(paramMap);
+        if (EResponse.toFail(resp[0])) {
+            log.warn("updateDeviceNotifyMessage userid={}, map={}", userid, paramMap);
+            return EResponse.response(EResponse.FAILURE, ESysCode.RESPONSE);
+        }
+        return EResponse.response(EResponse.SUCCESS);
+    }
+
+    /**
      * 查询设备属性信息(GET)
      *
      * @param userid   用户标识
