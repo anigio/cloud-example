@@ -1,10 +1,9 @@
 package com.anigio.example.cloudapi.front;
 
 import com.anigio.cloudapi.openapi.utils.crypto.ApiSHA1;
-import com.anigio.common.response.JSONObjectResponse;
-import com.anigio.common.response.template.Response;
 import com.anigio.example.cloudapi.ecode.ECode;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,12 +29,13 @@ public class OpenApiPortalController {
      * @return String
      */
     @GetMapping(value = "callback", produces = "text/plain;charset=utf-8")
-    public String authGet(@RequestParam(name = "signature", required = false) String signature,
-                          @RequestParam(name = "timestamp", required = false) String timestamp,
-                          @RequestParam(name = "nonce", required = false) String nonce,
-                          @RequestParam(name = "echostr", required = false) String echostr) {
+    public String authGet(@RequestParam(name = "signature", required = false, defaultValue = "") String signature,
+                          @RequestParam(name = "timestamp", required = false, defaultValue = "") String timestamp,
+                          @RequestParam(name = "nonce", required = false, defaultValue = "") String nonce,
+                          @RequestParam(name = "echostr", required = false, defaultValue = "") String echostr) {
         // 计算校验签名
-        if (signature.equals(ApiSHA1.genWithSorted(NOTIFY_TOKEN, nonce, timestamp))) {
+        if (StringUtils.isNoneBlank(signature, timestamp, nonce, echostr)
+                && signature.equals(ApiSHA1.genWithSorted(NOTIFY_TOKEN, nonce, timestamp))) {
             return echostr;
         }
         return "invalid signature";
@@ -53,14 +53,15 @@ public class OpenApiPortalController {
      */
     @PostMapping(value = "callback", produces = "application/json; charset=UTF-8")
     public String wxMessage(@RequestBody String requestBody,
-                              @RequestParam("signature") String signature,
-                              @RequestParam(name = "encryptType", required = false) String encType,
-                              @RequestParam(name = "msgSignature", required = false) String msgSignature,
-                              @RequestParam("timestamp") String timestamp,
-                              @RequestParam("nonce") String nonce) {
+                              @RequestParam(name = "signature", defaultValue = "") String signature,
+                              @RequestParam(name = "encryptType", required = false, defaultValue = "") String encType,
+                              @RequestParam(name = "msgSignature", required = false, defaultValue = "") String msgSignature,
+                              @RequestParam(name = "timestamp", defaultValue = "") String timestamp,
+                              @RequestParam(name = "nonce", defaultValue = "") String nonce) {
 
         // 计算校验签名
-        if (signature.equals(ApiSHA1.genWithSorted(NOTIFY_TOKEN, nonce, timestamp))) {
+        if (StringUtils.isNoneBlank(signature, timestamp, nonce)
+                &&signature.equals(ApiSHA1.genWithSorted(NOTIFY_TOKEN, nonce, timestamp))) {
             log.info("requestBody={}", requestBody);
             return OpenApiResponse.builder().build().jsonString();
         }

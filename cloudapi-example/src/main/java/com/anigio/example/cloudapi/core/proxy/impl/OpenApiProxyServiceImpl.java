@@ -41,6 +41,7 @@ public class OpenApiProxyServiceImpl implements OpenApiProxyService {
             log.warn("sendDeviceControlMessage userid={}, map={}", userid, paramMap);
             return EResponse.response(EResponse.FAILURE, ESysCode.RESPONSE);
         }
+        log.info("recv={}", resp[1]);
         return EResponse.response(EResponse.SUCCESS);
     }
 
