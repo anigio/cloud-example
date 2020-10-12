@@ -14,4 +14,8 @@ public interface MK {
     String OBJECT_ID = "objectid";
     String INSTANCE_ID = "instanceid";
     String RESOURCE_ID = "resourceid";
+    String LIMIT = "limit";
+    String PAGE = "page";
+    String SPACE_ID = "spaceid";
+    String ID = "id";
 }

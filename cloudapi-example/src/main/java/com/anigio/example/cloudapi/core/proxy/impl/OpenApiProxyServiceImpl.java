@@ -333,4 +333,72 @@ public class OpenApiProxyServiceImpl implements OpenApiProxyService {
         return resp;
     }
 
+    /**
+     * 商户根空间信息
+     *
+     * @param userid   用户ID
+     * @param paramMap 数据内容
+     * @return Object[]
+     */
+    @Override
+    public Object[] findMerchantRootSpaceInfo(String userid, Map<String, Object> paramMap) {
+        Object[] resp = cloudOpenApiService.findMerchantRootSpaceInfo(paramMap);
+        if (EResponse.toFail(resp[0])) {
+            log.warn("findMerchantRootSpaceInfo invalid send, userid={}, map={}", userid, paramMap);
+            return EResponse.response(EResponse.FAILURE, ESysCode.RESPONSE);
+        }
+        return resp;
+    }
+
+    /**
+     * 商户子空间信息
+     *
+     * @param userid   用户ID
+     * @param paramMap 数据内容
+     * @return Object[]
+     */
+    @Override
+    public Object[] findMerchantSpaceInfo(String userid, Map<String, Object> paramMap) {
+        Object[] resp = cloudOpenApiService.findMerchantNormalSpaceInfo(paramMap);
+        if (EResponse.toFail(resp[0])) {
+            log.warn("findMerchantSpaceInfo invalid send, userid={}, map={}", userid, paramMap);
+            return EResponse.response(EResponse.FAILURE, ESysCode.RESPONSE);
+        }
+        return resp;
+    }
+
+    /**
+     * 空间设备列表
+     *
+     * @param userid   用户ID
+     * @param paramMap 数据内容
+     * @return Object[]
+     */
+    @Override
+    public Object[] findSpaceDeviceListInfo(String userid, Map<String, Object> paramMap) {
+        Object[] resp = cloudOpenApiService.findSpaceDeviceListInfo(paramMap);
+        if (EResponse.toFail(resp[0])) {
+            log.warn("findSpaceDeviceListInfo invalid send, userid={}, map={}", userid, paramMap);
+            return EResponse.response(EResponse.FAILURE, ESysCode.RESPONSE);
+        }
+        return resp;
+    }
+
+    /**
+     * 空间设备详情信息
+     *
+     * @param userid   用户ID
+     * @param paramMap 数据内容
+     * @return Object[]
+     */
+    @Override
+    public Object[] findSpaceVirtualDeviceDetailInfo(String userid, Map<String, Object> paramMap) {
+        Object[] resp = cloudOpenApiService.findSpaceVirtualDeviceInfo(paramMap);
+        if (EResponse.toFail(resp[0])) {
+            log.warn("findSpaceVirtualDeviceDetailInfo invalid send, userid={}, map={}", userid, paramMap);
+            return EResponse.response(EResponse.FAILURE, ESysCode.RESPONSE);
+        }
+        return resp;
+    }
+
 }

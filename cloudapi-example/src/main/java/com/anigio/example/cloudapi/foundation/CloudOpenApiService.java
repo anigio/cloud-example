@@ -156,4 +156,31 @@ public interface CloudOpenApiService {
      */
     Object[] sendDeviceLogUploadMessage(Map<String, Object> paramMap);
 
+    /**
+     * 商户根空间信息
+     * @param paramMap 数据内容
+     * @return Object[]
+     */
+    Object[] findMerchantRootSpaceInfo(Map<String, Object> paramMap);
+
+    /**
+     * 商户子空间信息
+     * @param paramMap 数据内容
+     * @return Object[]
+     */
+    Object[] findMerchantNormalSpaceInfo(Map<String, Object> paramMap);
+
+    /**
+     * 空间设备列表
+     * @param paramMap 数据内容
+     * @return Object[]
+     */
+    Object[] findSpaceDeviceListInfo(Map<String, Object> paramMap);
+
+    /**
+     * 空间设备详情信息
+     * @param paramMap 数据内容
+     * @return Object[]
+     */
+    Object[] findSpaceVirtualDeviceInfo(Map<String, Object> paramMap);
 }

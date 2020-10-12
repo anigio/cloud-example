@@ -143,4 +143,35 @@ public interface OpenApiProxyService {
      */
     Object[] sendDeviceLogUploadMessage(String userid, Map<String, Object> paramMap);
 
+    /**
+     * 商户根空间信息
+     * @param userid 用户ID
+     * @param paramMap 数据内容
+     * @return Object[]
+     */
+    Object[] findMerchantRootSpaceInfo(String userid, Map<String, Object> paramMap);
+
+    /**
+     * 商户子空间信息
+     * @param userid 用户ID
+     * @param paramMap 数据内容
+     * @return Object[]
+     */
+    Object[] findMerchantSpaceInfo(String userid, Map<String, Object> paramMap);
+
+    /**
+     * 空间设备列表
+     * @param userid 用户ID
+     * @param paramMap 数据内容
+     * @return Object[]
+     */
+    Object[] findSpaceDeviceListInfo(String userid, Map<String, Object> paramMap);
+
+    /**
+     * 空间设备详情信息
+     * @param userid 用户ID
+     * @param paramMap 数据内容
+     * @return Object[]
+     */
+    Object[] findSpaceVirtualDeviceDetailInfo(String userid, Map<String, Object> paramMap);
 }

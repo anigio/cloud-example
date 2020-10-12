@@ -21,6 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 /**
@@ -314,6 +315,57 @@ public class CloudApiInfoRequest implements Serializable {
                 .deviceId(getDeviceId()).data(getData()).build();
         return FluentMap.builder().add(MK.DATA, notifyMessage.jsonString()).map();
     }
+
+    private Integer page;
+    private Integer limit;
+
+    public Integer getPage() {
+        return Optional.ofNullable(page).orElse(1);
+    }
+
+    public Integer getLimit() {
+        return Optional.ofNullable(limit).orElse(10);
+    }
+
+    // 商户根空间信息
+    public Map<String, Object> merchantRoomSpaceInfoMap() {
+        return FluentMap.builder().add(MK.LIMIT, getLimit())
+                .add(MK.PAGE, (getPage() - 1) * getLimit()).map();
+    }
+
+    // 商户子空间信息
+    private String spaceId;
+
+    public boolean invalidMerchantSpaceInfoParam() {
+        return StringUtils.isEmpty(getSpaceId());
+    }
+
+    public Map<String, Object> merchantSpaceInfoMap() {
+        return FluentMap.builder().add2L(MK.SPACE_ID, getSpaceId())
+                .add(MK.LIMIT, getLimit()).add(MK.PAGE, (getPage() - 1) * getLimit()).map();
+    }
+
+    // 空间设备列表
+    public boolean invalidSpaceDeviceQueryParam() {
+        return StringUtils.isEmpty(getSpaceId());
+    }
+
+    public Map<String, Object> spaceDeviceQueryMap() {
+        return FluentMap.builder().add2L(MK.SPACE_ID, getSpaceId())
+                .add(MK.LIMIT, getLimit()).add(MK.PAGE, (getPage() - 1) * getLimit()).map();
+    }
+
+    // 空间设备信息
+    private String id;
+
+    public boolean invalidDeviceInfoQueryParam() {
+        return StringUtils.isEmpty(getId());
+    }
+
+    public Map<String, Object> deviceInfoQueryMap() {
+        return FluentMap.builder().add2L(MK.ID, getId()).map();
+    }
+
 
     // Setting Method
 

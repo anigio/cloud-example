@@ -506,4 +506,88 @@ public class CloudOpenApiServiceImpl implements CloudOpenApiService {
         return EResponse.ret();
     }
 
+    /**
+     * 商户根空间信息
+     *
+     * @param paramMap 数据内容
+     * @return Object[]
+     */
+    @Override
+    public Object[] findMerchantRootSpaceInfo(Map<String, Object> paramMap) {
+        try {
+            Map<String, Object> body = getBodyMessageMap(paramMap);
+
+            String appid = apiService.getConfigStorage().getAppId();
+            ApiResult ret = ApiResult.fromJson(apiService.merchantRootSpaceInfo(appid, body));
+
+            return EResponse.response(EResponse.SUCCESS, JSON.toJSONString(ret.getData()));
+        } catch (ApiException e) {
+            log.error("findMerchantRootSpaceInfo body={}, resp={}", paramMap, e.getResult());
+        }
+        return EResponse.ret();
+    }
+
+    /**
+     * 商户子空间信息
+     *
+     * @param paramMap 数据内容
+     * @return Object[]
+     */
+    @Override
+    public Object[] findMerchantNormalSpaceInfo(Map<String, Object> paramMap) {
+        try {
+            Map<String, Object> body = getBodyMessageMap(paramMap);
+
+            String appid = apiService.getConfigStorage().getAppId();
+            ApiResult ret = ApiResult.fromJson(apiService.merchantSpaceInfo(appid, body));
+
+            return EResponse.response(EResponse.SUCCESS, JSON.toJSONString(ret.getData()));
+        } catch (ApiException e) {
+            log.error("findMerchantNormalSpaceInfo body={}, resp={}", paramMap, e.getResult());
+        }
+        return EResponse.ret();
+    }
+
+    /**
+     * 空间设备列表
+     *
+     * @param paramMap 数据内容
+     * @return Object[]
+     */
+    @Override
+    public Object[] findSpaceDeviceListInfo(Map<String, Object> paramMap) {
+        try {
+            Map<String, Object> body = getBodyMessageMap(paramMap);
+
+            String appid = apiService.getConfigStorage().getAppId();
+            ApiResult ret = ApiResult.fromJson(apiService.merchantSpaceDeviceListInfo(appid, body));
+
+            return EResponse.response(EResponse.SUCCESS, JSON.toJSONString(ret.getData()));
+        } catch (ApiException e) {
+            log.error("findSpaceDeviceListInfo body={}, resp={}", paramMap, e.getResult());
+        }
+        return EResponse.ret();
+    }
+
+    /**
+     * 空间设备详情信息
+     *
+     * @param paramMap 数据内容
+     * @return Object[]
+     */
+    @Override
+    public Object[] findSpaceVirtualDeviceInfo(Map<String, Object> paramMap) {
+        try {
+            Map<String, Object> body = getBodyMessageMap(paramMap);
+
+            String appid = apiService.getConfigStorage().getAppId();
+            ApiResult ret = ApiResult.fromJson(apiService.merchantSpaceDeviceInfo(appid, body));
+
+            return EResponse.response(EResponse.SUCCESS, JSON.toJSONString(ret.getData()));
+        } catch (ApiException e) {
+            log.error("findSpaceVirtualDeviceDetailInfo body={}, resp={}", paramMap, e.getResult());
+        }
+        return EResponse.ret();
+    }
+
 }

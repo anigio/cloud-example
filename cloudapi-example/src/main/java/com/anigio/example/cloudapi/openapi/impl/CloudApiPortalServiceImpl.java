@@ -6,6 +6,7 @@ import com.anigio.common.json.FluentMap;
 import com.anigio.common.response.DefaultResponse;
 import com.anigio.common.response.JSONArrayResponse;
 import com.anigio.common.response.JSONObjectResponse;
+import com.anigio.common.response.PagingQueryResponse;
 import com.anigio.common.response.template.ParamResponse;
 import com.anigio.common.response.template.Response;
 import com.anigio.example.cloudapi.core.proxy.OpenApiProxyService;
@@ -212,6 +213,39 @@ public class CloudApiPortalServiceImpl {
                 resp = openApiProxyService.updateDeviceNotifyMessage(userid, info.notifyMessageMap());
                 if (EResponse.toBool(resp[0])) {
                     return DefaultResponse.response();
+                }
+                break;
+            case FUNCTION_21: // TODO: 商户根空间信息
+                resp = openApiProxyService.findMerchantRootSpaceInfo(userid, info.merchantRoomSpaceInfoMap());
+                if (EResponse.toBool(resp[0])) {
+                    return PagingQueryResponse.build().list(resp[1]).total(resp[2]).page(info.getPage());
+                }
+                break;
+            case FUNCTION_22: // TODO: 商户子空间信息
+                if (info.invalidMerchantSpaceInfoParam()) {
+                    return ParamResponse.from(ECode.E_INVALID_PARAM);
+                }
+                resp = openApiProxyService.findMerchantSpaceInfo(userid, info.merchantSpaceInfoMap());
+                if (EResponse.toBool(resp[0])) {
+                    return PagingQueryResponse.build().list(resp[1]).total(resp[2]).page(info.getPage());
+                }
+                break;
+            case FUNCTION_23: // TODO: 空间设备列表
+                if (info.invalidSpaceDeviceQueryParam()) {
+                    return ParamResponse.from(ECode.E_INVALID_PARAM);
+                }
+                resp = openApiProxyService.findSpaceDeviceListInfo(userid, info.spaceDeviceQueryMap());
+                if (EResponse.toBool(resp[0])) {
+                    return PagingQueryResponse.build().list(resp[1]).total(resp[2]).page(info.getPage());
+                }
+                break;
+            case FUNCTION_24: // TODO: 空间设备信息
+                if (info.invalidDeviceInfoQueryParam()) {
+                    return ParamResponse.from(ECode.E_INVALID_PARAM);
+                }
+                resp = openApiProxyService.findSpaceVirtualDeviceDetailInfo(userid, info.deviceInfoQueryMap());
+                if (EResponse.toBool(resp[0])) {
+                    return JSONObjectResponse.from(resp[1]);
                 }
                 break;
             default:
